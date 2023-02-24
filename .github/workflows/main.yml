@@ -14,7 +14,7 @@ jobs:
           tags: hello
       - name: run container
         run: |
-          docker images
-      - name: inspect image
+          docker run --name hello -d -p 3000:3000 ${{ steps.build.outputs.ImageID }}
+      - name: inspect container
         run: |
-          docker image inspect ${{ steps.build.outputs.ImageID }}
+          curl -v http://localhost:3000
