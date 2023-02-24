@@ -4,6 +4,7 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     container:
+      image: ubuntu:latest
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
     steps:
