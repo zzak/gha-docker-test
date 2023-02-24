@@ -1,0 +1,13 @@
+on: [push]
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    name: run hello world app
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: build image
+        uses: 'docker'
+          with:
+            image: 'Dockerfile'
