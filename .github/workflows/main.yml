@@ -6,10 +6,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: build image
+        id: build
         uses: docker/build-push-action@v2
         with:
           push: false
           load: true
+          tags: hello
       - name: run container
         run: |
           docker images
+      - name: inspect image
+        run: |
+          docker image inspect ${{ steps.build.outputs.ImageID }}
