@@ -3,11 +3,13 @@ on: [push]
 jobs:
   hello_world:
     runs-on: ubuntu-latest
-    name: run hello world app
+    container:
+      image: hello:latest
+      volumes:
+        - /var/run/docker.sock:/var/run/docker.sock
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: build image
-        uses: 'docker'
-        with:
-          image: 'Dockerfile'
+        run: docker build -t hello ./
+      - name: run container
+        run: docker run --name hello -d -p 3000:3000 hello:latest
