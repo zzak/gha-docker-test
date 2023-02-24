@@ -12,5 +12,4 @@ jobs:
           load: true
       - name: run container
         run: |
-          docker run \
-            docker.io/library/latest
+          docker images
