@@ -15,6 +15,7 @@ jobs:
       - name: run container
         run: |
           docker run --name hello -d -p 3000:3000 ${{ steps.build.outputs.ImageID }}
+      - run: docker ps; sleep 2
       - name: inspect container
         run: |
-          curl -v http://localhost:3000
+          curl -v --retry 5 --retry-max-time 30 http://localhost:3000
