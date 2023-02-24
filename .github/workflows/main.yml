@@ -3,13 +3,14 @@ on: [push]
 jobs:
   hello_world:
     runs-on: ubuntu-latest
-    container:
-      image: ubuntu:latest
-      volumes:
-        - /var/run/docker.sock:/var/run/docker.sock
     steps:
       - uses: actions/checkout@v3
       - name: build image
-        run: docker build -t hello ./
+        uses: docker/build-push-action@v2
+        with:
+          push: false
+          load: true
       - name: run container
-        run: docker run --name hello -d -p 3000:3000 hello:latest
+        run: |
+          docker run \
+            docker.io/library/latest
